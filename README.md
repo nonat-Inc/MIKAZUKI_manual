@@ -1,73 +1,86 @@
 # MIKAZUKI_manual
 
+# nonat clinical_v2 – Technical Specification
 
-# nonat clinical_v2 - 技術仕様書
+## System Requirements
 
-## システム要件
+- **Android OS**: 7.0 (API 24) or later, up to 14.0 (API 35)
 
-- **Android OS**: 7.0 (API 24) 以上、14.0 (API 35) まで対応
+---
 
+## Communication Specifications
 
-## 通信仕様
+- **Baud rate**: 1,000,000 bps (1 Mbps)
+- **Data bits**: 8
+- **Stop bits**: 1
+- **Parity**: None
+- **Flow control**: DTR/RTS control
 
-- **通信速度**: 1,000,000 bps (1 Mbps)
-- **データビット**: 8
-- **ストップビット**: 1
-- **パリティ**: なし
-- **フロー制御**: DTR/RTS制御
+---
 
-## データ送信形式
+## Data Transmission Format
 
-### チャンネル数
-**3チャンネル**
+### Number of Channels
+3 channels
 
-### データ形式
-デバイスから送信するデータは、改行区切りのCSV形式：
+### Data Format
+
+Data transmitted from the device is in comma-separated CSV format, terminated by a newline character:
 
 ```
 FIN_TIP,ARM,FIN_BASE\n
 ```
 
-- **FIN_TIP**: チャンネル1の値（整数、0-1023）
-- **ARM**: チャンネル2の値（整数、0-1023）
-- **FIN_BASE**: チャンネル3の値（整数、0-1023）
+- **FIN_TIP**: Channel 1 value (integer, 0–1023)
+- **ARM**: Channel 2 value (integer, 0–1023)
+- **FIN_BASE**: Channel 3 value (integer, 0–1023)
 
-### 改行方法
-**LF（`\n`、0x0A）を使用**
+### Line Termination
 
-### 送信例
+- LF (`\n`, 0x0A)
+
+### Transmission Example
+
 ```
 512,256,768\n
 515,258,770\n
 510,255,765\n
 ```
 
-## 受信データ処理
+---
 
-- 改行文字（`\n`）で1行として認識
-- カンマ（`,`）で3つの値に分割
-- 各値は整数として解釈（0-1023の範囲）
-- 表示更新レート: 最大20回/秒（50ミリ秒間隔）
+## Received Data Processing
 
-## CSV記録ファイル形式（有料版）
+- Each line is detected using the newline character (`\n`)
+- Each line is split into three values using commas (`,`)
+- Each value is parsed as an integer (range: 0–1023)
+- Display update rate: up to 20 Hz (50 ms interval)
 
-記録時のCSVファイル形式：
+---
+
+## CSV Recording File Format (Paid Version)
+
+CSV file format during recording:
 
 ```
-経過時間(ミリ秒),FIN_TIP,ARM,FIN_BASE
+ElapsedTime(ms),FIN_TIP,ARM,FIN_BASE
 ```
 
-- **経過時間**: 記録開始日の00:00:00からの経過時間（ミリ秒、整数）
-- **FIN_TIP, ARM, FIN_BASE**: 各チャンネルの値（整数、0-1023）
+- **ElapsedTime**: Elapsed time since 00:00:00 on the recording start date (milliseconds, integer)
+- **FIN_TIP, ARM, FIN_BASE**: Channel values (integers, 0–1023)
 
-**例**:
+### Example
+
 ```csv
 12345,512,256,768
 12395,515,258,770
 12445,510,255,765
 ```
 
-## アプリ情報
-- **バージョン**: 2.01 (Version Code: 8)
-- **最小Android**: 7.0 (API 24)
-- **ターゲットAndroid**: 14.0 (API 35)
+---
+
+## Application Information
+
+- **Version**: 2.01 (Version Code: 8)
+- **Minimum Android Version**: 7.0 (API 24)
+- **Target Android Version**: 14.0 (API 35)
