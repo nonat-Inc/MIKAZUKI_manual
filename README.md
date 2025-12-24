@@ -4,7 +4,7 @@
 
 ## System Requirements
 
-- **Android OS**: 7.0 (API 24) or later, up to 14.0 (API 35)
+- **Android OS**: 7.0 (API 24) or later, up to 15.0 (API 35)
 
 ---
 
