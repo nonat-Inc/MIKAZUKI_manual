@@ -1,6 +1,6 @@
 # MIKAZUKI_manual
 
-# nonat clinical_v2 – Technical Specification
+# nonat Inc. – Technical Specification
 
 ## System Requirements
 
